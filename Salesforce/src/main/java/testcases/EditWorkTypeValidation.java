@@ -1,38 +1,17 @@
 package testcases;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
-public class EditWorkTypeValidation {
-
-	public static void main(String[] args) throws Exception {
-		//1) Launch the app
-				ChromeOptions options=new ChromeOptions();
-				options.addArguments("--disable-notifications");
-				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-				WebDriver driver=new ChromeDriver(options);
-				driver.manage().window().maximize();
+public class EditWorkTypeValidation extends BaseClass {
+	
+	@Test
+	public void editTypeValidation() throws Exception {
 				
-				//2) Click Login
-				driver.get("https://login.salesforce.com/");
-				
-				//3) Login with the credentials
-				driver.findElement(By.id("username")).sendKeys("nupela@testleaf.com");
-				driver.findElement(By.name("pw")).sendKeys("Bootcamp@1234");
-				driver.findElement(By.name("Login")).click();
-				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-				
+				Thread.sleep(5000);
 				//4) Click on the App Launcher Icon left to Setup
 				driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
 				
@@ -87,9 +66,7 @@ public class EditWorkTypeValidation {
 				System.out.println(text);
 				String text1=driver.findElement(By.xpath("//ul[@class='errorsList']/li")).getText();
 				System.out.println(text1);
-	
-				//14)  Close browser
-				driver.close();	
+				driver.findElement(By.xpath("//button[@title='Close this window']")).click();
 			}
 			
 	}

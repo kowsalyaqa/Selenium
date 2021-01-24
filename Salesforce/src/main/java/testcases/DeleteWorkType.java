@@ -1,9 +1,6 @@
 package testcases;
 
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -14,22 +11,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
-public class DeleteWorkType {
+
+public class DeleteWorkType extends BaseClass{
 	
-	public static void main(String[] args) throws Exception {
+	@Test
+	public static void deleteWorkType() throws Exception {
 		
-		ChromeOptions options=new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-		WebDriver driver=new ChromeDriver(options);
-		driver.manage().window().maximize();
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		driver.findElement(By.id("username")).sendKeys("nupela@testleaf.com");
-		driver.findElement(By.id("password")).sendKeys("Bootcamp@1234");
-		driver.findElement(By.id("Login")).click();
-		
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
 		
 		Actions action=new Actions(driver);

@@ -1,41 +1,29 @@
 package testcases;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
-public class EditWorkType {
 
-	public static WebDriver driver=null;
+public class EditWorkType extends BaseClass{
+
 	
-	public static void editWorkType()
+	@Test
+	public  void editWorkType() throws Exception
 	{
-		//1) Launch the app
-		ChromeOptions options=new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-		driver=new ChromeDriver(options);
-		driver.manage().window().maximize();
-		
-		//2) Click Login
-		driver.get("https://login.salesforce.com/");
-		
-		//3) Login with the credentials
-		driver.findElement(By.id("username")).sendKeys("nupela@testleaf.com");
-		driver.findElement(By.name("pw")).sendKeys("Bootcamp@1234");
-		driver.findElement(By.name("Login")).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	
 		
 		//4) Click on the App Launcher Icon left to Setup
-		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
+		driver.navigate().refresh();
+		WebElement appIconEle = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
+		WebDriverWait wait1=new WebDriverWait(driver,60);
+		wait1.until(ExpectedConditions.elementToBeClickable(appIconEle));
+		appIconEle.click();
 		
 		//5) Click on View All
 		Actions action1=new Actions(driver);
@@ -102,14 +90,8 @@ public class EditWorkType {
 			System.out.println("Edit Message is not displayed as expected");
 		}
 		
-		//13)  Close browser
-		driver.close();	
-	}
-	
-	
-	public static void main(String[] args) {
-		
-		editWorkType();
+		Thread.sleep(2000);;
+		driver.findElement(By.xpath("//button[@title='Close this window']")).click();
 		
 	}
 	

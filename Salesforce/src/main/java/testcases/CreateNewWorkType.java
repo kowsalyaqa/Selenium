@@ -4,40 +4,23 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
-public class CreateNewWorkType {
+public class CreateNewWorkType extends BaseClass {
 	
-	public WebDriver driver=null;
 	String workTypeName="Salesforce Project";
 
-	public void createNewWorkType()  
+	@Test
+	public void createNewWorkType() throws Exception  
 	{
-		//Launch browser
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
-		driver=new ChromeDriver(options);
-		driver.manage().window().maximize();
 		
-		//1)Launch the app
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		
-		//2)Click Login
-		driver.findElement(By.id("Login")).click();
-		
-		//3)Login with Credentials
-		driver.findElement(By.id("username")).sendKeys("nupela@testleaf.com");
-		driver.findElement(By.id("password")).sendKeys("Bootcamp@1234");
-		driver.findElement(By.id("Login")).click();
-		
+		Thread.sleep(2000);
 		//4)Click on the App Launcher Icon left to Setup
 		driver.findElement(By.className("slds-icon-waffle")).click();
 		
@@ -127,20 +110,6 @@ public class CreateNewWorkType {
 		{
 			System.out.println("Created Message is not matched");
 		}
-		
-		//16)close browser
-		driver.close();
-		
+			
 	}
-
-		public static void main(String[] args) {
-			
-			CreateNewWorkType cnwt=new CreateNewWorkType();
-			cnwt.createNewWorkType();
-		
-			
-
-		}
-	
-
 }
