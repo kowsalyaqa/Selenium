@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
+import ProjectSpecificMethods.BaseClass;
+
 public class EditWorkTypeValidation extends BaseClass {
 	
 	@Test
