@@ -1,11 +1,19 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
-import ProjectSpecificMethods.BaseClass;
+import projectspecificmethods.BaseClass;
 
 public class EditWorkTypePage extends BaseClass{
+	
+	WebDriver driver;
 
+
+	public EditWorkTypePage(WebDriver dr) {
+		
+		this.driver=dr;
+	}
 
 
 	public EditWorkTypePage enterFrameStartTextbox()
@@ -30,7 +38,7 @@ public class EditWorkTypePage extends BaseClass{
 
 		//11) Click on Save
 		driver.findElement(By.xpath("(//div[@class='button-container-inner slds-float_right']/button)[3]")).click();
-		return new WorkTypeHomePage();
+		return new WorkTypeHomePage(driver);
 	}
 
 	public WorkTypeHomePage verifyEditedWorkTypeUpdationMessage()
@@ -46,6 +54,6 @@ public class EditWorkTypePage extends BaseClass{
 				{
 					System.out.println("Edit Message is not displayed as expected");
 				}
-		return new WorkTypeHomePage();
+		return new WorkTypeHomePage(driver);
 	}
 }

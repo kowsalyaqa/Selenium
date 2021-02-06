@@ -2,15 +2,16 @@ package testcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-import ProjectSpecificMethods.BaseClass;
+import projectspecificmethods.BaseClass;
 
 public class EditWorkTypeValidation extends BaseClass {
-	
-	@Test
+
+	@Test(priority=3)
 	public void editTypeValidation() throws Exception {
 				
 				Thread.sleep(5000);

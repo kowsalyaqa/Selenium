@@ -1,35 +1,31 @@
 package testcases;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import Pages.AppLauncherPage;
-import Pages.EditWorkTypePage;
-import Pages.HomePage;
-import Pages.WorkTypeHomePage;
-import ProjectSpecificMethods.BaseClass;
+import pages.AppLauncherPage;
+import pages.EditWorkTypePage;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.WorkTypeHomePage;
+import projectspecificmethods.BaseClass;
 
 
 public class EditWorkType extends BaseClass{
 
-	
-	@Test
+
+
+	@Test(priority=2)
 	public  void editWorkType() throws Exception
 	{
-		HomePage hp=new HomePage();
+		new LoginPage(driver).enterUserName().enterPassword().clickOnLogin();
+		HomePage hp=new HomePage(driver);
 		hp.clickOnAppLauncherIcon();
 		hp.clickOnViewAllLink();
-		AppLauncherPage alp=new AppLauncherPage();
+		AppLauncherPage alp=new AppLauncherPage(driver);
 		alp.clickOnWorkTypesLink();
-		WorkTypeHomePage wthp=new WorkTypeHomePage();
+		WorkTypeHomePage wthp=new WorkTypeHomePage(driver);
 		wthp.clickOnRowEndArrow();
 		wthp.clickOnEditLink();
-		EditWorkTypePage ewthp=new EditWorkTypePage();
+		EditWorkTypePage ewthp=new EditWorkTypePage(driver);
 		ewthp.enterFrameEndTextbox();
 		ewthp.enterFrameEndTextbox();
 		ewthp.clickOnEditSaveButton();

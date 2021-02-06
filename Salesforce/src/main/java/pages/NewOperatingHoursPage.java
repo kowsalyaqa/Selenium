@@ -1,13 +1,22 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import ProjectSpecificMethods.BaseClass;
+import projectspecificmethods.BaseClass;
 
 public class NewOperatingHoursPage extends BaseClass {
+
+	WebDriver driver;
+	
+	
+	public NewOperatingHoursPage(WebDriver dr) {
+		
+		this.driver=dr;
+	}
 
 	public NewOperatingHoursPage enteShiftName(String newOperatingHoursName)
 	{
@@ -16,15 +25,11 @@ public class NewOperatingHoursPage extends BaseClass {
 		return this;
 	}
 
-	
-
-
-
 	public NewOperatingHoursPage clickOnTimeZoneDropDownList() throws Exception
 	{
 		
 		driver.findElement(By.xpath("//span[text()='Time Zone']/following::a")).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		return this;
 	}
 
@@ -39,7 +44,7 @@ public class NewOperatingHoursPage extends BaseClass {
 
 		//12) Click on Save
 		driver.findElement(By.xpath("(//button[@title='Save'])[2]")).click();					
-		return new NewWorkTypePage();			
+		return new NewWorkTypePage(driver);			
 	}
 
 
@@ -58,7 +63,7 @@ public class NewOperatingHoursPage extends BaseClass {
 			System.out.println("Created Shift Message is not displayed as expected");
 		}
 		
-		return new NewWorkTypePage();
+		return new NewWorkTypePage(driver);
 
 
 	}

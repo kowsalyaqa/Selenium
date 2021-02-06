@@ -1,15 +1,21 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import ProjectSpecificMethods.BaseClass;
+import projectspecificmethods.BaseClass;
 
 public class HomePage extends BaseClass{
-
+	
+	WebDriver driver;
+	public HomePage(WebDriver dr) {
+		
+		this.driver=dr;
+	}
 
 	public AppLauncherPage clickOnAppLauncherIcon() throws Exception
 	{
@@ -20,7 +26,7 @@ public class HomePage extends BaseClass{
 		WebDriverWait wait1=new WebDriverWait(driver,60);
 		wait1.until(ExpectedConditions.elementToBeClickable(appIconEle));
 		appIconEle.click();
-		return new AppLauncherPage();
+		return new AppLauncherPage(driver);
 
 	}
 
@@ -29,8 +35,16 @@ public class HomePage extends BaseClass{
 		//5) Click on View All
 		Actions action1=new Actions(driver);
 		WebElement eleViewAll=driver.findElement(By.xpath("//button[text()='View All']"));
+		for(int i=0;i<3;i++)
+		{
+		try {
 		action1.moveToElement(eleViewAll).click().build().perform();
-		return new AppLauncherPage();
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		}
+		return new AppLauncherPage(driver);
 
 	}
 
